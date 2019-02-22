@@ -19,6 +19,10 @@ public class Productos {
     String [] CatProducto;
     int opc;
     int i;
+    int[] cantidad;
+    double[] subtotal;
+    int foo;
+    double Total;
     
  public Productos(){
 
@@ -29,6 +33,10 @@ public class Productos {
      this.CatProducto = new String [10];
      this.opc = 0;
      this.i = 0;
+     this.cantidad = new int [10];
+     this.subtotal = new double [10];
+     this.foo = 0;
+     this.Total = 0.0;
  }
 
  public void MenuP(){
@@ -105,6 +113,45 @@ public class Productos {
              }while(i<10);
  }
     
+    public void DetalleFact(){
+        MenuPrincipal LaT;
+        LaT = new MenuPrincipal();
+        for(int p =0; p < idProducto.length; p++){
+            System.out.println("Introduzca idProducto para facturacion:");
+            i = in.nextInt();
+            if(idProducto[p]==i){
+                System.out.println("\nIdProducto: " + idProducto[p] );
+                System.out.println("---------------------\n");
+                in.nextLine();
+                System.out.println("\nNombre: " + NProducto[p] );
+                System.out.println("---------------------\n");
+                System.out.println("\nCategoria: " + CatProducto[p] );
+                System.out.println("---------------------\n");
+                in.nextLine();
+                System.out.println("\nPrecio: " + PrecioProducto[p] );
+                System.out.println("---------------------\n");
+        }
+            for (int linea = 0;linea<9;linea++){
+            System.out.println("Cantidad: ");
+            opc = in.nextInt();
+            cantidad [linea] = opc;
+            subtotal[linea] = cantidad [linea] * PrecioProducto[i-1];
+            System.out.println("Total: " + subtotal[linea]);
+            
+            System.out.println("Finalizar factura: Presione 0\n Continuar: Presione 1\n");
+            foo = in.nextInt();
+            if(foo == 0){
+                for(int j = 0; j<subtotal.length;j++){
+                    Total += subtotal[j];
+                }
+                System.out.println("El total de su factura es: Q" + Total);
+                LaT.Menu();
+            }else if(foo == 1){
+            DetalleFact();
+    }
+               
+    }
+        }
     
-    
+    }
 }
